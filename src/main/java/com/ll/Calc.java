@@ -1,42 +1,34 @@
 package com.ll;
-
 public class Calc {
     public static int run(String exp) {
-        exp = exp.replaceAll("- ", "+ -");
         boolean needToMulti = exp.contains("*");
         boolean needToPlus = !needToMulti;
+        boolean needToPlus = exp.contains("+");
 
-        String[] bits = exp.split(" \\+ ");
         if (needToPlus) {
-            exp = exp.replaceAll("- ", "+ -");
+            boolean needToCompound = needToMulti && needToPlus;
 
-            int sum = 0;
-            String[] bits = exp.split(" \\+ ");
+            if (needToCompound) {
+                String[] bits = exp.split(" \\+ ");
 
-            for (int i = 0; i < bits.length; i++) {
-                sum += Integer.parseInt(bits[i]);
+                return Integer.parseInt(bits[0]) + run(bits[1]);
+            } else if (needToPlus) {
+                exp = exp.replaceAll("- ", "+ -");
+
+                String[] bits = exp.split(" \\+ ");
                 int sum = 0;
-
                 for (int i = 0; i < bits.length; i++) {
                     sum += Integer.parseInt(bits[i]);
                 }
-
                 return sum;
-            }
-        else if (needToMulti) {
+            } else if (needToMulti) {
                 String[] bits = exp.split(" \\* ");
-
                 int sum = 1;
-
-                return sum;
                 for (int i = 0; i < bits.length; i++) {
                     sum *= Integer.parseInt(bits[i]);
                 }
-
                 return sum;
             }
-
-            // throw new RuntimeException("올바른 계산식이 아닙니다.");
             throw new RuntimeException("올바른 계산식이 아닙니다.");
         }
     }
