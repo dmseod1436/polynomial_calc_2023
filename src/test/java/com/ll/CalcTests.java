@@ -38,10 +38,15 @@ public class CalcTests {
     void t7() {
         assertThat(Calc.run("100 - 20")).isEqualTo(80);
     }
-
     @Test
     @DisplayName("10 + 20 + 30 == 60")
     void t8() {
         assertThat(Calc.run("10 + 20 + 30")).isEqualTo(60);
+    }
+
+    @Test
+    @DisplayName("10 - 20 + 30 == 20")
+    void t9() {
+        assertThat(Calc.run("10 - 20 + 30")).isEqualTo(20);
     }
 }
