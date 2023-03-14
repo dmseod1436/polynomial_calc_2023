@@ -1,5 +1,4 @@
 package com.ll;
-
 public class Calc {
     public static int run(String exp) {
         String[] bits = exp.split(" \\+ ");
