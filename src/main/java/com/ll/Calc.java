@@ -11,16 +11,6 @@ public class Calc {
 
         boolean needToCompound = needToMulti && needToPlus;
 
-
-
-
-
-
-
-
-
-
-
         if ( needToCompound ) {
             String[] bits = exp.split(" \\+ ");
             String newExp = Arrays.stream(bits)
